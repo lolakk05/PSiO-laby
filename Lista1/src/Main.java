@@ -1,15 +1,30 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+    //parametry metody, typ int
+    public static int NWD(int a, int b) {
+        //dopóki a jest różne od b wykonujemy pętle while
+        while(a != b) {
+            //jeśli a jest większe od b od a odejmujemy b
+            if(a > b) a -= b;
+            //jesli nie to od b odejmujemy a
+            else b -= a;
+        };
+        //zwracamy a
+        return a;
+    };
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+    public static int power(int a, int b) {
+        //podstawiamy wartosc a do zmiennej pomocniczej
+        int tmp = a;
+        //wykonujemy pętle for b razy
+        for(int i = 0; i < (b-1); i++) {
+            a *= tmp;
+        };
+        //zwracamy a
+        return a;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(NWD(10, 25));
+        System.out.println(power(2, 8));
     }
 }
