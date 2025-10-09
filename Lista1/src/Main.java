@@ -14,17 +14,35 @@ public class Main {
 
     public static int power(int a, int b) {
         //podstawiamy wartosc a do zmiennej pomocniczej
+        if(a == 0) {
+            return 1;
+        }
         int tmp = a;
         //wykonujemy pętle for b razy
-        for(int i = 0; i < (b-1); i++) {
+        for(int i = 1; i < b; i++) {
             a *= tmp;
         };
         //zwracamy a
         return a;
-    }
+    };
 
     public static void main(String[] args) {
-        System.out.println(NWD(10, 25));
-        System.out.println(power(2, 8));
+        //wypisywanie i zamkniecie linii
+//        System.out.println(NWD(10, 25));
+//        System.out.println(power(2, 8));
+        int a = 5;
+        int b = 2;
+        int tmp = a;
+        int wynik = 0;
+        if(a == 0) {
+            wynik = 1;
+        }
+        else {
+            for(int i = 1; i<b; i++) {
+                a *= tmp;
+            }
+            wynik = a;
+        }
+        System.out.println(wynik);
     }
 }
