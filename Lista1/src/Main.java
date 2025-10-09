@@ -25,24 +25,79 @@ public class Main {
         //zwracamy a
         return a;
     };
+    //sinus wersja uproszczona
+    public static double sin(double x, int n) {
+        double M = 1;
+        double S = x;
+        double L = x;
+        int k = 1;
+        while(k <= n) {
+            L *= (x * x);
+            M *= (2 * k) + (2 * k + 1);
+            if(k % 2 == 0) {
+                S += (L / M);
+            }
+            else {
+                S -= (L / M);
+            }
+            k++;
+        };
+        return S;
+    }
+
+    //sinus wersja szybsza
+    public static double sin2(double x, int n) {
+        double S = x;
+        double tmp = x;
+        int k = 1;
+        while(k <= n) {
+            tmp *= (-(x*x))/((2*k)*(2*k+1));
+            S += tmp;
+            k++;
+        }
+        return S;
+    }
+
+    //cosinus
+    public static double cos(double x, int n) {
+        double S = 1;
+        double L = 1;
+        double M = 1;
+        int k = 1;
+        while(k <= n) {
+            L *= (x*x);
+            M *= (2 * k) * (2 * k + 1);
+            if(k % 2 == 0) {
+                S += L / M;
+            }
+            else {
+                S -= L / M;
+            }
+            k++;
+        }
+        return S;
+    }
 
     public static void main(String[] args) {
         //wypisywanie i zamkniecie linii
 //        System.out.println(NWD(10, 25));
 //        System.out.println(power(2, 8));
-        int a = 5;
-        int b = 2;
-        int tmp = a;
-        int wynik = 0;
-        if(a == 0) {
-            wynik = 1;
-        }
-        else {
-            for(int i = 1; i<b; i++) {
-                a *= tmp;
-            }
-            wynik = a;
-        }
-        System.out.println(wynik);
+//        int a = 2;
+//        int b = 3;
+//        int tmp = a;
+//        int wynik = 1;
+//        for(int i = 1; i<=b; i++) {
+//            wynik *= a;
+//        }
+//        int i = 1;
+//        while(i <= b) {
+//            wynik *= a;
+//            i++;
+//        }
+//        System.out.println(wynik);
+        System.out.println(sin(0.5, 5));
+        System.out.format("%.4f \n",sin(0.5, 5));
+        System.out.println(sin2(1, 3));
+        System.out.println(cos(0.2, 2));
     }
 }
