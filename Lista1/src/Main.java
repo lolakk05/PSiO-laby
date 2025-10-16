@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     //parametry metody, typ int
     public static int NWD(int a, int b) {
@@ -7,10 +9,10 @@ public class Main {
             if(a > b) a -= b;
             //jesli nie to od b odejmujemy a
             else b -= a;
-        };
+        }
         //zwracamy a
         return a;
-    };
+    }
 
     public static int power(int a, int b) {
         //podstawiamy wartosc a do zmiennej pomocniczej
@@ -21,10 +23,10 @@ public class Main {
         //wykonujemy pętle for b razy
         for(int i = 1; i < b; i++) {
             a *= tmp;
-        };
+        }
         //zwracamy a
         return a;
-    };
+    }
     //sinus wersja uproszczona
     public static double sin(double x, int n) {
         double M = 1;
@@ -41,7 +43,7 @@ public class Main {
                 S -= (L / M);
             }
             k++;
-        };
+        }
         return S;
     }
 
@@ -95,6 +97,10 @@ public class Main {
 //            i++;
 //        }
 //        System.out.println(wynik);
+        Scanner a = new Scanner(System.in);
+        Scanner b = new Scanner(System.in);
+        System.out.println(NWD(a.nextInt(), b.nextInt()));
+        System.out.println(power(5, 3));
         System.out.println(sin(0.5, 5));
         System.out.format("%.4f \n",sin(0.5, 5));
         System.out.println(sin2(1, 3));

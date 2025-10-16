@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Lista2/Lista2.iml" filepath="$PROJECT_DIR$/../Lista2/Lista2.iml" />
       <module fileurl="file://$PROJECT_DIR$/untilted.iml" filepath="$PROJECT_DIR$/untilted.iml" />
     </modules>
   </component>
