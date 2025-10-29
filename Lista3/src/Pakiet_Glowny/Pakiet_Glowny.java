@@ -1,3 +1,5 @@
+package Pakiet_Glowny;
+
 import Biblioteka.Biblioteka;
 
 public class Pakiet_Glowny {
