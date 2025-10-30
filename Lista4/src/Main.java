@@ -49,7 +49,7 @@ class Array1d {
             suma += tablica[i];
         }
 
-        srednia = suma / tablica.length;
+        srednia = (double) suma / tablica.length;
 
         return srednia;
     }

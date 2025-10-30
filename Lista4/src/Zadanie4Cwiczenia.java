@@ -26,6 +26,16 @@ public class Zadanie4Cwiczenia {
         return max;
     }
 
+    public static void maxWiersz(int[] tablica) {
+        int max = tablica[0];
+        for(int i = 1 ; i < tablica.length ; i++){
+            if (max < tablica[i]) {
+                max = tablica[i];
+            }
+        }
+        System.out.println("Maksymalna wartość wiersza: " + max);
+    }
+
     public static void main(String[] args) {
         int[][] Tab = new int[wiersze][];
 
@@ -36,6 +46,9 @@ public class Zadanie4Cwiczenia {
         Tab[4] = new int[5];
 
         uzupelnij(Tab);
+        for(int i = 0; i < Tab.length; i++) {
+            maxWiersz(Tab[i]);
+        }
         System.out.println(max(Tab));
     }
 }

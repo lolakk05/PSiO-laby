@@ -2,27 +2,25 @@ import java.util.Arrays;
 
 public class MnozenieMacierzy {
     public static int[][] mnozenie(int[][] a, int[][] b) {
-        int wierszeA = a.length;
-        int kolumnyA = a[0].length;
-        int wierszeB = b.length;
-        int kolumnyB = b[0].length;
-
         int suma = 0;
 
-        if(kolumnyA != wierszeB) {
-            throw new IllegalArgumentException("Nie można wymnożyc takich macierzy");
-        }
+        int[][] wynik = new int[a.length][b[0].length];
 
-        int[][] wynik = new int[wierszeA][kolumnyB];
-
-        for(int i = 0; i < wierszeA; i++) {
-            for(int j = 0; j < kolumnyB; j++) {
-                suma = 0;
-                for(int k = 0; k < kolumnyA; k++) {
-                    suma += a[i][k] * b[k][j];
+        if(a[0].length == b.length) {
+            for(int i = 0; i < a.length; i++) {
+                for(int j = 0; j < b[0].length; j++) {
+                    suma = 0;
+                    for(int k = 0; k < a[0].length; k++) {
+                        suma += a[i][k] * b[k][j];
+                        System.out.print(a[i][k] * b[k][j] + " ");
+                    }
+                    wynik[i][j] = suma;
+                    System.out.println(wynik[i][j]);
                 }
-                wynik[i][j] = suma;
             }
+        }
+        else {
+            System.out.println("Nie można mnożyć takich macierzy");
         }
         return wynik;
     }
@@ -39,12 +37,17 @@ public class MnozenieMacierzy {
     public static void main(String[] args) {
         int[][] macierz1 = {{1, 2}, {4, 5}};
         int[][] macierz2 = {{4, 5}, {1, 2}};
+        wyswietl(macierz1);
+        System.out.println();
+        wyswietl(macierz2);
+        System.out.println();
         int[][] wynik1 = mnozenie(macierz1, macierz2);
+        System.out.println();
         wyswietl(wynik1);
-        int[][] macierz3 = {{1, 2, 3} , {4, 5 ,6}};
-        int[][] macierz4 = {{1, 2}, {3, 4}, {5, 6}};
-        int[][] wynik2 = mnozenie(macierz3, macierz4);
-        wyswietl(wynik2);
+//        int[][] macierz3 = {{1, 2, 3} , {4, 5 ,6}};
+//        int[][] macierz4 = {{1, 2}, {3, 4}, {5, 6}};
+//        int[][] wynik2 = mnozenie(macierz3, macierz4);
+//        wyswietl(wynik2);
 
     }
 }
