@@ -16,7 +16,7 @@ public class MnozenieMacierzy {
         int wierszeB = b.length;
         int kolumnyB = b[0].length;
 
-        int[][] wynik = new int[a.length][b[0].length];
+        int[][] wynik = new int[wierszeA][kolumnyB];
 
         if(kolumnyA == wierszeB) {
             for(int i = 0; i < wierszeA; i++) {
