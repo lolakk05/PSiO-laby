@@ -91,10 +91,11 @@ class Array1d {
 public class Main {
     public static void wyswietl(int[] tablica) {
         System.out.println("Wartości w tablicy:");
-        for(int i=0; i < tablica.length; i++) {
+        int i = 0;
+        while(i < tablica.length && tablica[i] % 2 == 0) {
             System.out.print(tablica[i] + " ");
+            i += 1;
         }
-        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -106,6 +107,7 @@ public class Main {
         int[] parzyste = tablica.getParzyste();
         int[] parzyste2 = tablica.getParzysteV2();
         wyswietl(parzyste);
+        System.out.println();
         wyswietl(parzyste2);
     }
 }

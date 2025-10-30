@@ -1,7 +1,15 @@
 import java.util.Arrays;
 
 public class MnozenieMacierzy {
-    public static int[][] mnozenie(int[][] a, int[][] b) {
+    private int[][] a;
+    private int[][] b;
+
+    MnozenieMacierzy(int[][] macierz1, int[][] macierz2) {
+        this.a = macierz1;
+        this.b = macierz2;
+    }
+
+    public int[][] mnozenie() {
         int suma = 0;
 
         int[][] wynik = new int[a.length][b[0].length];
@@ -12,7 +20,7 @@ public class MnozenieMacierzy {
                     suma = 0;
                     for(int k = 0; k < a[0].length; k++) {
                         suma += a[i][k] * b[k][j];
-                        System.out.print(a[i][k] * b[k][j] + " ");
+                        System.out.print(a[i][k] + " " + b[k][j] + " dalej ");
                     }
                     wynik[i][j] = suma;
                     System.out.println(wynik[i][j]);
@@ -25,7 +33,7 @@ public class MnozenieMacierzy {
         return wynik;
     }
 
-    public static void wyswietl(int[][] a) {
+    public void wyswietl(int[][] a) {
         for(int i = 0; i < a.length; i++) {
             for(int j = 0; j < a[0].length; j++) {
                 System.out.print(a[i][j] + " ");
@@ -33,21 +41,19 @@ public class MnozenieMacierzy {
             System.out.println();
         }
     }
+}
 
+class Main1 {
     public static void main(String[] args) {
-        int[][] macierz1 = {{1, 2}, {4, 5}};
-        int[][] macierz2 = {{4, 5}, {1, 2}};
-        wyswietl(macierz1);
+        int[][] macierz1 = {{1, 2, 3}, {4, 5, 6}};
+        int[][] macierz2 = {{1, 2, 3, 4} , {5, 6, 7, 8}, {9, 0, 1, 2}};
+        MnozenieMacierzy macierze = new MnozenieMacierzy(macierz1, macierz2);
+        macierze.wyswietl(macierz1);;
         System.out.println();
-        wyswietl(macierz2);
+        macierze.wyswietl(macierz2);
         System.out.println();
-        int[][] wynik1 = mnozenie(macierz1, macierz2);
+        int[][] wynik1 = macierze.mnozenie();
         System.out.println();
-        wyswietl(wynik1);
-//        int[][] macierz3 = {{1, 2, 3} , {4, 5 ,6}};
-//        int[][] macierz4 = {{1, 2}, {3, 4}, {5, 6}};
-//        int[][] wynik2 = mnozenie(macierz3, macierz4);
-//        wyswietl(wynik2);
-
+        macierze.wyswietl(wynik1);
     }
 }
