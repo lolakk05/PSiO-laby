@@ -1,16 +1,14 @@
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 class Array1d {
     private int[] tablica;
 
     Array1d() {
-        tablica = new int[100];
+        int dlugosc = 10;
+        tablica = new int[dlugosc];
         Random random = new Random();
-        for(int i=0; i < 100; i++) {
-            tablica[i] = random.nextInt(100);
+        for(int i=0; i < tablica.length; i++) {
+            tablica[i] = random.nextInt(10);
         }
     }
 
@@ -54,25 +52,60 @@ class Array1d {
         return srednia;
     }
 
-    public ArrayList<Integer> getParzyste() {
-        ArrayList<Integer> parzyste = new ArrayList<>();
+    public int[] getParzyste() {
+        int parzyste = 0;
+        for(int i = 0; i < tablica.length; i++) {
+            if(tablica[i] % 2 == 0) {
+                parzyste += 1;
+            }
+        }
+        int[] Parzyste = new int[parzyste];
+        int pozycja = 0;
+        for(int i = 0; i < tablica.length; i++) {
+            if(tablica[i] % 2 == 0) {
+                Parzyste[pozycja] = tablica[i];
+                pozycja += 1;
+            }
+        }
+        return Parzyste;
+    }
+
+    public int[] getParzysteV2() {
+        int[] Parzyste = new int[tablica.length];
+        int pozycja = 0;
+
+        for(int i = 0; i < Parzyste.length; i++) {
+            Parzyste[i] = 1;
+        }
 
         for(int i = 0; i < tablica.length; i++) {
             if(tablica[i] % 2 == 0) {
-                parzyste.add(tablica[i]);
+                Parzyste[pozycja] = tablica[i];
+                pozycja += 1;
             }
         }
-        return parzyste;
+        return Parzyste;
     }
 }
 
 public class Main {
+    public static void wyswietl(int[] tablica) {
+        System.out.println("Wartości w tablicy:");
+        for(int i=0; i < tablica.length; i++) {
+            System.out.print(tablica[i] + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         Array1d tablica = new Array1d();
         tablica.getWartosci();
         System.out.println("\nMaksymalna wartość: " + tablica.getMax());
         System.out.println("Wartość minimalna: " + tablica.getMin());
         System.out.println("Średnia wartość: " + tablica.getSrednia());
-        System.out.println("Parzyste: " + tablica.getParzyste());
+        int[] parzyste = tablica.getParzyste();
+        int[] parzyste2 = tablica.getParzysteV2();
+        wyswietl(parzyste);
+        wyswietl(parzyste2);
     }
 }
