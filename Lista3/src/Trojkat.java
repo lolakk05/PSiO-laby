@@ -50,7 +50,7 @@ class Main {
             bok1 = trojkat.getDlugosc(trojkat.wierzcholek1, trojkat.wierzcholek3);
             bok2 = trojkat.getDlugosc(trojkat.wierzcholek2, trojkat.wierzcholek3);
             obwod = trojkat.obwod(podstawa, bok1, bok2);
-            p = obwod / 2;34
+            p = obwod / 2;
             pole = trojkat.pole(p, podstawa, bok1, bok2);
 
             System.out.printf("Wymiary trójkąta: Podstawa: %.2f Ramie1: %.2f Ramie2: %.2f \n", podstawa, bok1, bok2);
