@@ -1,16 +1,16 @@
 import java.io.*;
 
 public class Main {
-//    public static void zapisz(TeamMember[] members) {
-//        try(ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("teammember.ser"))) {
-//            for(int i = 0; i < members.length; i++) {
-//                so.writeObject(members[i]);
-//            }
-//        }
-//        catch(IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void zapisz(TeamMember[] members) {
+        try(ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("teammember.ser"))) {
+            for(int i = 0; i < members.length; i++) {
+                so.writeObject(members[i]);
+            }
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static TeamMember[] odczytaj() {
         try(ObjectInputStream is = new ObjectInputStream(new FileInputStream("teammember.ser"))) {
