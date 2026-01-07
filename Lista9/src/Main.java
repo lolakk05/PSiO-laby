@@ -1,9 +1,6 @@
 import java.io.*;
 import java.security.CodeSource;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 class Main {
     public void wyswietlMenu() {
@@ -15,13 +12,19 @@ class Main {
         System.out.println("9 - dodaj pracownika uczelni");
         System.out.println("10 - dodaj pracownika naukowego");
         System.out.println("11 - dodaj studenta");
-        System.out.println("12 - wyjscie");
+        System.out.println("12 - sortowanie listy po placy");
+        System.out.println("13 - sortowanie listy po nazwisku");
+        System.out.println("14 - zmien strategie");
+        System.out.println("0- wyjscie");
         System.out.print("Wybierz opcje: ");
     }
 
     public void zapisz(ArrayList<Osoba> osoby) {
         try(ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("osoby.ser"))) {
-            so.writeObject(osoby);
+            so.writeInt(osoby.size());
+            for(Osoba osoba : osoby) {
+                so.writeObject(osoba);
+            }
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -30,7 +33,10 @@ class Main {
     public ArrayList<Osoba> wczytaj() {
         ArrayList<Osoba> osoby = new ArrayList<>();
         try(ObjectInputStream is = new ObjectInputStream(new FileInputStream("osoby.ser"))) {
-            osoby= (ArrayList<Osoba>) is.readObject();
+            int rozmiar = is.readInt();
+            for(int i = 0; i < rozmiar; i++) {
+                osoby.add((Osoba) is.readObject());
+            }
         }
         catch(IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -133,17 +139,17 @@ class Main {
         String email = scanner.next();
         System.out.println("Wiek:");
         int wiek = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Pesel: ");
         String pesel = scanner.next();
         System.out.println("Rola:");
         String rola = scanner.next();
-        System.out.println("Placa:");
-        int placa = scanner.nextInt();
         System.out.println("Stanowisko:");
         String stanowisko = scanner.next();
         System.out.println("Etat:");
         String etat = scanner.next();
         System.out.println("Dodano pracownika");
+        StrategiaWynagrodzenie placa = new StrategiaUczelni(etat, stanowisko);
         osoby.add(new PracownikUczelni(imie, nazwisko, email, wiek, pesel, rola, placa, stanowisko, etat));
     }
 
@@ -157,20 +163,20 @@ class Main {
         String email = scanner.next();
         System.out.println("Wiek:");
         int wiek = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("Pesel: ");
-        String pesel = scanner.next();
+        String pesel = scanner.nextLine();
         System.out.println("Rola:");
-        String rola = scanner.next();
-        System.out.println("Placa:");
-        int placa = scanner.nextInt();
+        String rola = scanner.nextLine();
         System.out.println("Tytul:");
-        String tytul = scanner.next();
+        String tytul = scanner.nextLine();
         System.out.println("Dorobek:");
         int dorobek = scanner.nextInt();
         System.out.println("Wydzial: ");
         String wydzial = scanner.next();
         System.out.println("Katedra:");
         String katedra = scanner.next();
+        StrategiaWynagrodzenie placa = new StrategiaNaukowy(tytul, dorobek);
         System.out.println("Dodano wykladowce");
         osoby.add(new PracownikNaukowy(imie, nazwisko, email, wiek, pesel, rola, placa, tytul, dorobek, wydzial, katedra));
     }
@@ -207,49 +213,83 @@ class Main {
         osoby.add(new Student(imie, nazwisko, email, wiek, pesel, kierunek, indeks, kursy));
     }
 
+    public void zmianaStrategii(ArrayList<Osoba> osoby) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wpisz imie: ");
+        String imie =  scanner.next();
+        System.out.println("Wybierz metode: ");
+        int wybierz = scanner.nextInt();
+        for(Osoba osoba : osoby) {
+            if(osoba.getImie().equalsIgnoreCase(imie) && osoba instanceof Pracownik) {
+                Pracownik osoba1 = (Pracownik) osoba;
+                osoba1.setPlaca(wybierz);
+            }
+        }
+    }
+
     public void main(String[] args) {
         ArrayList<Osoba> osoby = new ArrayList<Osoba>();
         Scanner scanner = new Scanner(System.in);
 
         wyswietlMenu();
-        int input = scanner.nextInt();
 
-        while(input < 12 && input > 0) {
-            if(input == 1) {
-                wyswietlWszystkich(osoby);
+        while (scanner.hasNext()) {
+            int input = scanner.nextInt();
+            scanner.nextLine();
+            if (input != 0) {
+                switch (input) {
+                    case 1:
+                        wyswietlWszystkich(osoby);
+                        break;
+                    case 2:
+                        szukajPoNazwisku(osoby);
+                        break;
+                    case 3:
+                        szukajPoDorobku(osoby);
+                        break;
+                    case 4:
+                        szukajPoIndeksie(osoby);
+                        break;
+                    case 5:
+                        szukajPoStanowisku(osoby);
+                        break;
+                    case 6:
+                        szukajPoSredniej(osoby);
+                        break;
+                    case 7:
+                        zapisz(osoby);
+                        break;
+                    case 8:
+                        osoby = wczytaj();
+                        break;
+                    case 9:
+                        dodajPracownikaUczelni(osoby);
+                        break;
+                    case 10:
+                        dodajPracownikaNaukowego(osoby);
+                        break;
+                    case 11:
+                        dodajStudenta(osoby);
+                        break;
+                    case 12:
+                        osoby.sort(new SortowaniePlaca());
+                        System.out.println("Posortowano po płacy");
+                        break;
+                    case 13:
+                        osoby.sort(new SortowanieNazwisko());
+                        System.out.println("Posortowano po nazwisku");
+                        break;
+                    case 14:
+                        zmianaStrategii(osoby);
+                        break;
+                    default:
+                        System.out.println("Brak wyboru / Nieprawidłowa opcja");
+                        break;
+                }
+                wyswietlMenu();
+            } else {
+                break;
             }
-            if(input == 2) {
-                szukajPoNazwisku(osoby);
-            }
-            if(input == 3) {
-                szukajPoDorobku(osoby);
-            }
-            if(input == 4) {
-                szukajPoIndeksie(osoby);
-            }
-            if(input == 5) {
-                szukajPoStanowisku(osoby);
-            }
-            if(input == 6) {
-                szukajPoSredniej(osoby);
-            }
-            if(input == 7) {
-                zapisz(osoby);
-            }
-            if(input == 8) {
-                osoby = wczytaj();
-            }
-            if(input == 9) {
-                dodajPracownikaUczelni(osoby);
-            }
-            if(input == 10) {
-                dodajPracownikaNaukowego(osoby);
-            }
-            if(input == 11) {
-                dodajStudenta(osoby);
-            }
-            wyswietlMenu();
-            input = scanner.nextInt();
         }
     }
 }
