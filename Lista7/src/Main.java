@@ -3,6 +3,7 @@ import java.io.*;
 public class Main {
     public static void zapisz(TeamMember[] members) {
         try(ObjectOutputStream so = new ObjectOutputStream(new FileOutputStream("teammember.ser"))) {
+            so.writeInt(members.length);
             for(int i = 0; i < members.length; i++) {
                 so.writeObject(members[i]);
             }

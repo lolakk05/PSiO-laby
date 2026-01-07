@@ -4,7 +4,7 @@ public class PracownikNaukowy extends Pracownik {
     private String wydzial;
     private String katedra;
 
-    public PracownikNaukowy(String imie, String nazwisko, String email, int wiek, String pesel, String rola, int placa, String tytul,int dorobek, String wydzial, String katedra) {
+    public PracownikNaukowy(String imie, String nazwisko, String email, int wiek, String pesel, String rola, StrategiaWynagrodzenie placa, String tytul,int dorobek, String wydzial, String katedra) {
         super(imie, nazwisko, email, wiek, pesel, rola, placa);
         this.tytul = tytul;
         this.dorobek = dorobek;
@@ -42,6 +42,16 @@ public class PracownikNaukowy extends Pracownik {
 
     public void setKatedra(String katedra) {
         this.katedra = katedra;
+    }
+
+    @Override
+    public void setPlaca(int wybierz) {
+        if(wybierz == 1) {
+            this.placa = new StrategiaDomyslne();
+        }
+        else if(wybierz == 2) {
+            this.placa = new StrategiaNaukowy(this.tytul, this.dorobek);
+        }
     }
 
     @Override
