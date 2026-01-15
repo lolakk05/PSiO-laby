@@ -1,8 +1,10 @@
+package backend;
+
 import java.io.*;
 import java.security.CodeSource;
 import java.util.*;
 
-class Main {
+public class Main {
     public void wyswietlMenu() {
         System.out.println("1 - wyswietlenie wszystkich");
         System.out.println("2 - szukanie po nazwisku, 3 - szukanie po dorobku");

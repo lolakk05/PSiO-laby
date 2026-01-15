@@ -1,3 +1,5 @@
+package backend;
+
 import java.io.Serializable;
 
 abstract public class Osoba implements Serializable {

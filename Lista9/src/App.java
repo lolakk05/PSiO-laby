@@ -1,5 +1,3 @@
-package backend;
-
 import frontend.MainFrame;
 
 import javax.swing.*;

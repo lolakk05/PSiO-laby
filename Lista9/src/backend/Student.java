@@ -1,6 +1,6 @@
-import java.io.Serializable;
+package backend;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Student extends Osoba {
     private String kierunek;
@@ -41,9 +41,9 @@ public class Student extends Osoba {
     @Override
     public String toString() {
         return super.toString() +
-                "\nKierunek: " + kierunek +
+                " Kierunek: " + kierunek +
                 " Indeks: " + indeks +
-                " Kursy: " + kursy +
+                " backend.Kursy: " + kursy +
                 " Srednia ocen: " + getSrednia();
     }
 }

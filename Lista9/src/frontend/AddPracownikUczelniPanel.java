@@ -86,7 +86,6 @@ public class AddPracownikUczelniPanel extends JPanel {
 
             int ageInt = Integer.parseInt(ageValue);
 
-            // Wywołanie metody z backendu (Service)
             backend.dodajPracownikaUczelni(nameValue, surnameValue, emailValue, ageInt, peselValue, roleValue, positionValue, etatValue);
 
             JOptionPane.showMessageDialog(mainFrame, "Dodano pracownika uczelni");

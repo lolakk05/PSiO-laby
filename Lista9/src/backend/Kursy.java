@@ -1,3 +1,5 @@
+package backend;
+
 import java.io.Serializable;
 
 public class Kursy implements Serializable {
@@ -5,7 +7,7 @@ public class Kursy implements Serializable {
     private int ects;
     private double ocena;
 
-    Kursy(String nazwa, int ects, double ocena) {
+    public Kursy(String nazwa, int ects, double ocena) {
         this.nazwa = nazwa;
         this.ects = ects;
         this.ocena = ocena;

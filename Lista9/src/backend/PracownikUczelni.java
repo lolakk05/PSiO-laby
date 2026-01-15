@@ -1,3 +1,5 @@
+package backend;
+
 public class PracownikUczelni extends Pracownik {
     private String stanowisko;
     private String etat;
@@ -37,7 +39,7 @@ public class PracownikUczelni extends Pracownik {
     @Override
     public String toString() {
         return super.toString() +
-                "\nStanowisko: " + stanowisko +
+                " Stanowisko: " + stanowisko +
                 " Etat: " + etat;
     }
 }

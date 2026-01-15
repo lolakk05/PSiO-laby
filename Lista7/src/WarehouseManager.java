@@ -1,3 +1,6 @@
+import backend.Car;
+import backend.TeamMember;
+
 import java.io.Serializable;
 
 class WarehouseManager extends TeamMember implements Serializable {

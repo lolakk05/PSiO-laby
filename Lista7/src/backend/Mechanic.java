@@ -1,3 +1,5 @@
+package backend;
+
 import java.io.Serializable;
 
 public class Mechanic extends TrackWorker implements Serializable {

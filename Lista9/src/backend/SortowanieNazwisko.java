@@ -1,3 +1,5 @@
+package backend;
+
 import java.util.Comparator;
 
 public class SortowanieNazwisko implements Comparator<Osoba> {

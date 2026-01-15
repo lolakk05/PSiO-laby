@@ -1,3 +1,5 @@
+package backend;
+
 abstract public class Pracownik extends Osoba  {
     private String rola;
     protected StrategiaWynagrodzenie placa;

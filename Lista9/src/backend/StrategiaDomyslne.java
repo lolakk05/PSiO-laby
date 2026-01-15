@@ -1,3 +1,5 @@
+package backend;
+
 import java.io.Serializable;
 
 public class StrategiaDomyslne implements  StrategiaWynagrodzenie, Serializable {
